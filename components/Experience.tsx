@@ -7,7 +7,7 @@ import { FloatingObjects } from './FloatingObjects';
 
 // Constants used to calculate position along the rail
 const PAGE_DEPTH = 15; // Distance between sections on Z axis
-const TOTAL_PAGES = 5;
+const TOTAL_PAGES = 6;
 
 export const Experience: React.FC = () => {
   const scroll = useScroll();

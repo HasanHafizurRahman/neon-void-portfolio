@@ -11,7 +11,7 @@ interface Props {
 const CyberShape: React.FC<{ 
   position: [number, number, number]; 
   color: string; 
-  type: 'icosa' | 'octa' | 'torus';
+  type: 'icosa' | 'octa' | 'torus' | 'box';
   scale?: number;
 }> = ({ position, color, type, scale = 1 }) => {
   const meshRef = useRef<THREE.Mesh>(null);
@@ -29,6 +29,7 @@ const CyberShape: React.FC<{
         {type === 'icosa' && <icosahedronGeometry args={[1, 0]} />}
         {type === 'octa' && <octahedronGeometry args={[1, 0]} />}
         {type === 'torus' && <torusKnotGeometry args={[0.6, 0.2, 100, 16]} />}
+        {type === 'box' && <boxGeometry args={[1, 1, 1]} />}
         
         {/* Wireframe for tech look */}
         <meshStandardMaterial 
@@ -62,32 +63,43 @@ const DataParticles: React.FC<{ position: [number, number, number] }> = ({ posit
 export const FloatingObjects: React.FC<Props> = ({ pageDepth }) => {
   return (
     <group>
-      {/* Intro Section - Just ahead */}
+      {/* 1. Intro Section - Just ahead */}
       <CyberShape position={[2, 0, -5]} color="#00f3ff" type="icosa" />
       <CyberShape position={[-2, -1, -8]} color="#ff00aa" type="octa" scale={0.5} />
 
-      {/* About Section */}
+      {/* 2. About Section (Image) */}
       <CyberShape position={[-3, 1, -pageDepth - 5]} color="#ff00aa" type="torus" />
       
-      {/* Skills Section */}
-      <DataParticles position={[0, 0, -(pageDepth * 2) - 5]} />
-      <CyberShape position={[3, -1, -(pageDepth * 2) - 2]} color="#00f3ff" type="octa" />
+      {/* 3. Experience Section (Timeline) - NEW */}
+      {/* Floating pillars to represent structure/stability */}
+      <CyberShape position={[3.5, 0, -(pageDepth * 2) - 5]} color="#00f3ff" type="box" scale={0.5} />
+      <CyberShape position={[-3.5, -2, -(pageDepth * 2) - 2]} color="#00f3ff" type="box" scale={0.5} />
+      <group position={[0, 0, -(pageDepth * 2) - 8]}>
+        <mesh rotation={[0, 0, Math.PI / 4]}>
+           <ringGeometry args={[3, 3.1, 4]} />
+           <meshBasicMaterial color="#ff00aa" side={THREE.DoubleSide} />
+        </mesh>
+      </group>
 
-      {/* Projects Section */}
+      {/* 4. Skills Section */}
+      <DataParticles position={[0, 0, -(pageDepth * 3) - 5]} />
+      <CyberShape position={[3, -1, -(pageDepth * 3) - 2]} color="#00f3ff" type="octa" />
+
+      {/* 5. Projects Section */}
       {/* Frames representing screens */}
-      <group position={[0, 0, -(pageDepth * 3) - 5]}>
-         <mesh position={[-2.5, 0, 0]} rotation={[0, 0.5, 0]}>
+      <group position={[0, 0, -(pageDepth * 4) - 5]}>
+         <mesh position={[-3, 0, 0]} rotation={[0, 0.5, 0]}>
             <planeGeometry args={[3, 2]} />
             <meshBasicMaterial color="#00f3ff" wireframe />
          </mesh>
-         <mesh position={[2.5, 0, 0]} rotation={[0, -0.5, 0]}>
+         <mesh position={[3, 0, 0]} rotation={[0, -0.5, 0]}>
             <planeGeometry args={[3, 2]} />
             <meshBasicMaterial color="#ff00aa" wireframe />
          </mesh>
       </group>
 
-      {/* Contact Section */}
-      <CyberShape position={[0, 2, -(pageDepth * 4) - 5]} color="#00f3ff" type="icosa" scale={2} />
+      {/* 6. Contact Section */}
+      <CyberShape position={[0, 2, -(pageDepth * 5) - 5]} color="#00f3ff" type="icosa" scale={2} />
     </group>
   );
 };

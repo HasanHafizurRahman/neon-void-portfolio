@@ -27,7 +27,7 @@ const App: React.FC = () => {
 
         <Suspense fallback={null}>
           {/* ScrollControls handles the virtual scrolling logic */}
-          <ScrollControls pages={5} damping={0.3}>
+          <ScrollControls pages={6} damping={0.3}>
             {/* The 3D Content */}
             <Experience />
             
