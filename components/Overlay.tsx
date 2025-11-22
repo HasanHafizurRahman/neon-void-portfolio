@@ -1,6 +1,7 @@
 import React from 'react';
 import { Scroll, useScroll } from '@react-three/drei';
 import { useFrame } from '@react-three/fiber';
+import shanto from '../assets/shanto.jpg';
 
 // Reusable Section Layout
 const Section: React.FC<{
@@ -73,7 +74,7 @@ export const Overlay: React.FC = () => {
                 <div className="w-full h-full rounded-full overflow-hidden border-4 border-white/10 bg-gray-900 flex items-center justify-center relative z-10">
                    {/* PLACEHOLDER IMAGE - Replace src with your actual image path */}
                    <img 
-                     src="https://placehold.co/400x400/050505/00f3ff?text=USER+IMG" 
+                     src={shanto} 
                      alt="Hasan Hafizur Rahman" 
                      className="w-full h-full object-cover opacity-80 hover:opacity-100 transition-opacity"
                    />
