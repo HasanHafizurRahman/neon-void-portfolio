@@ -1,0 +1,5 @@
+{
+  "name": "Neon Void Portfolio",
+  "description": "A cyberpunk-themed, 3D rail-shooter style portfolio website using Three.js and React.",
+  "requestFramePermissions": []
+}
